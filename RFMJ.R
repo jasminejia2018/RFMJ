@@ -21,47 +21,6 @@ library(dplyr)
 library(highcharter)
 library(reshape)
 
-drv <- JDBC(driverClass="org.netezza.Driver", classPath ="/DataDrive/nzjdbc3.jar","'")
-conn <- dbConnect(drv, "jdbc:netezza://cgunx60.na.compassgroup.corp:5480/CDL_STAGE", 'Keshev_Kulkarni', 'qat3gasT')
-conn <- dbConnect(drv, "jdbc:netezza://172.29.13.60:5480/CDL_US_SOURCE", 'Keshev_Kulkarni', 'qat3gasT')
-
-
-
-cn = odbcConnect("DashboardData", uid="microstrategy", pwd="s0ofKgLik6yhWjezy5L8")
-
-mobile=dbGetQuery(conn,"SELECT ORDERID
-                  , ORDERITEMID
-                  , ITEMID
-                  , MENUITEMNAME
-                  , ITEMSIZE
-                  , CUSTOMERID
-                  , ORDERDATE
-                  , ORDERDATETIME
-                  , APPNAME
-                  , UNITID
-                  , UNIT_NAME
-                  , UNIT_DETAIL_NAME
-                  ,GROUP_NAME
-                  ,GROUP_ID
-                  , SECTOR
-                  , STOREID
-                  , STORENAME
-                  , ADDRESS_COUNTRY
-                  , TRANSACTIONTYPEREFID
-                  , BRANDNAME
-                  , PAYMENTTYPE
-                  , VOLANTETRANSACTIONID
-                  , PROMOTIONCODE
-                  , DISCOUNTAMOUNT
-                  , DISCOUNT_VALUEISAMOUNT
-                  , QUANTITY
-                  , SALES
-                  , PRICECURRENCYCODE
-                  , LIVE
-                  , TIMEZONE
-                  , LOAD_DATE
-                  
-                  FROM CDL_DATAMART..DH_DATAMART")
 
 getDataFrame <- function(df,startDate,endDate){
   colnames(df)[which(names(df) == "ORDERDATE")] <- "dateOrder"
